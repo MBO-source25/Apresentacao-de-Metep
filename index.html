@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Um novo método pré-clínico in vitro para testar swabs nasofaríngeos de SARS-CoV-2</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="article-header">
+        <div class="journal-row">
+          <span class="badge-open">ACESSO ABERTO</span>
+          <span class="journal-meta" id="journalMeta"></span>
+        </div>
+        <h1 id="articleTitlePt"></h1>
+        <p class="title-en" id="articleTitleEn"></p>
+        <p class="authors-line" id="articleAuthors"></p>
+      </div>
+
+      <div class="toolbar">
+        <div class="toolbar-group" role="group" aria-label="Idioma de leitura">
+          <button class="btn active" data-lang="both" title="Exibir inglês original e tradução em português lado a lado">Lado a Lado (EN + PT)</button>
+          <button class="btn" data-lang="pt" title="Exibir apenas a tradução em português">Só Português</button>
+          <button class="btn" data-lang="en" title="Exibir apenas o original em inglês">Só Inglês</button>
+        </div>
+
+        <div class="toolbar-group" role="group" aria-label="Modos de estudo">
+          <button class="btn btn-outline" id="btnHighlightsOnly" title="Ocultar texto comum e exibir apenas os trechos grifados">Modo Revisão (Só Grifos)</button>
+          <input type="search" id="searchInput" placeholder="Buscar no artigo ou notas (ex: SISMA, Ct, Heicon)..." />
+        </div>
+      </div>
+
+      <nav class="nav-tabs" aria-label="Seções do estudo">
+        <button class="tab active" data-view="reader">Artigo Completo &amp; Notas</button>
+        <button class="tab" data-view="pico">Pergunta &amp; PICO</button>
+        <button class="tab" data-view="tables">Tabelas de Resultados (Volume &amp; Ct)</button>
+        <button class="tab" data-view="critique">Análise Crítica (Prós &amp; Limitações)</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-layout">
+    <!-- VISÃO 1: LEITOR MANIPULÁVEL DO ARTIGO COMPLETO -->
+    <section id="view-reader" class="view-panel active">
+      <div class="filter-strip">
+        <div class="legend-chips">
+          <span class="strip-label">Grifos:</span>
+          <button class="chip active" data-cat="all">Todos (14)</button>
+          <button class="chip cat-concept" data-cat="concept">Problema &amp; Conceitos</button>
+          <button class="chip cat-method" data-cat="method">Metodologia &amp; Modelo 3D</button>
+          <button class="chip cat-result" data-cat="result">Resultados &amp; RT-qPCR</button>
+          <button class="chip cat-critique" data-cat="critique">Análise Crítica &amp; Limitações</button>
+        </div>
+        <div class="jump-links">
+          <span class="strip-label">Ir para:</span>
+          <a href="#sec-abstract">Resumo</a>
+          <a href="#sec-intro">Introdução</a>
+          <a href="#sec-results">Resultados</a>
+          <a href="#sec-discussion">Discussão</a>
+          <a href="#sec-methods">Métodos</a>
+          <a href="#sec-references">Referências</a>
+        </div>
+      </div>
+
+      <div class="reader-grid">
+        <div class="article-stream" id="articleStream">
+          <!-- Parágrafos, subtítulos, figuras e tabelas renderizados pelo app.js -->
+        </div>
+
+        <aside class="notes-panel" id="notesPanel">
+          <div class="notes-header">
+            <h2>Anotações de Estudo</h2>
+            <span class="count-badge" id="notesCount">14 notas</span>
+          </div>
+          <p class="notes-tip">Clique em qualquer <strong>trecho grifado</strong> no texto para abrir a explicação didática correspondente (ou clique em uma nota para localizar o trecho no artigo).</p>
+
+          <div class="notes-cards" id="notesCards">
+            <!-- Cartões de anotação renderizados pelo app.js -->
+          </div>
+
+          <form class="note-form" id="noteForm">
+            <h3>Adicionar Nova Anotação</h3>
+            <select id="newNoteSection">
+              <option value="Resumo / Abstract">Resumo / Abstract</option>
+              <option value="Introdução">Introdução</option>
+              <option value="Resultados">Resultados</option>
+              <option value="Discussão">Discussão</option>
+              <option value="Materiais e Métodos">Materiais e Métodos</option>
+            </select>
+            <input type="text" id="newNoteTitle" placeholder="Título da anotação..." required />
+            <textarea id="newNoteBody" rows="3" placeholder="Escreva sua observação ou comentário crítico..." required></textarea>
+            <div class="form-btns">
+              <button type="submit" class="btn btn-primary">Salvar Nota</button>
+              <button type="button" class="btn btn-outline" id="btnExportJson">Exportar JSON</button>
+            </div>
+          </form>
+        </aside>
+      </div>
+    </section>
+
+    <!-- VISÃO 2: PERGUNTA DE PESQUISA E PICO -->
+    <section id="view-pico" class="view-panel">
+      <div class="card hero-card">
+        <h2>Pergunta de Pesquisa</h2>
+        <p id="picoQuestion"></p>
+      </div>
+
+      <div class="pico-cards" id="picoCards"></div>
+
+      <div class="card">
+        <h3>Por que este estudo é classificado como <em>In Vitro</em>?</h3>
+        <ul class="bullet-list">
+          <li><strong>Definição de estudo <em>in vitro</em>:</strong> Experimentos realizados fora de um organismo vivo, em um ambiente artificial, controlado e construído em laboratório (bancada anatômica 3D), e não diretamente na nasofaringe de pacientes (<em>in vivo</em>).</li>
+          <li><strong>Avanço frente ao tubo de ensaio:</strong> Reproduz fielmente a geometria nasal (via tomografia computadorizada) e as propriedades reológicas do muco humano (viscosidade e comportamento pseudoplástico <em>shear-thinning</em>), mas não contém células vivas, circulação sanguínea, resposta imune ou transporte mucociliar ativo.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- VISÃO 3: TABELAS COMPARATIVAS -->
+    <section id="view-tables" class="view-panel">
+      <div class="card">
+        <h2>Tabela 1 — Capacidade de Coleta e Eficiência de Liberação (Hidrogel SISMA)</h2>
+        <p class="caption-note"><strong>Analogia Hemoglobina vs. Mioglobina:</strong> O swab comercial flocado absorve maior volume bruto, mas retém grande parte do muco nas fibras de náilon. O swab experimental Heicon (moldado por injeção em polipropileno) captura menos volume, porém libera <strong>82,48%</strong> na cavidade 3D — entregando proporção superior para a análise laboratorial.</p>
+        <div class="table-scroll" id="standaloneTable1"></div>
+      </div>
+
+      <div class="card">
+        <h2>Tabela 2 — Recuperação de Material Viral por RT-qPCR (Valores de Ct)</h2>
+        <p class="caption-note"><strong>Leitura do Ct (Cycle Threshold):</strong> Quanto <em>menor</em> o Ct, menos ciclos foram necessários para amplificar o RNA viral (maior quantidade inicial de vírus recuperado). Todos os testes ficaram abaixo do limiar clínico de corte (Ct &lt; 40). O modelo de tubo reduziu artificialmente o Ct em 4 a 5 ciclos (superestimando em 10x a 28x a recuperação viral).</p>
+        <div class="table-scroll" id="standaloneTable2"></div>
+      </div>
+    </section>
+
+    <!-- VISÃO 4: ANÁLISE CRÍTICA -->
+    <section id="view-critique" class="view-panel">
+      <div class="critique-columns">
+        <div class="card border-green">
+          <h2>Pontos Fortes e Contribuições do Estudo</h2>
+          <div id="positiveList" class="critique-items"></div>
+        </div>
+        <div class="card border-orange">
+          <h2>Limitações, Pontos Fracos e Vieses</h2>
+          <div id="negativeList" class="critique-items"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Artigo original: Orjuela-Garzón et al., <em>Scientific Reports</em> (2025) 15:37101 • Tradução e anotações de estudo consolidadas para leitura interativa.</p>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
