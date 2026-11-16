@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Estudo Interativo | Método Pré-Clínico In Vitro para Swabs Nasofaríngeos</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <span class="badge">Scientific Reports • 2025</span>
+        <h1>Um novo método pré-clínico <em>in vitro</em> para testar swabs nasofaríngeos de SARS-CoV-2</h1>
+        <p class="subtitle">Orjuela-Garzón et al. • DOI: 10.1038/s41598-025-21107-1 • Material de Estudo METEP</p>
+      </div>
+
+      <div class="controls-bar">
+        <div class="control-group" role="group" aria-label="Modo de Idioma">
+          <button class="btn active" data-lang="both">Lado a Lado (EN + PT)</button>
+          <button class="btn" data-lang="pt">Só Português</button>
+          <button class="btn" data-lang="en">Só Inglês</button>
+        </div>
+
+        <div class="control-group" role="group" aria-label="Filtros de Estudo">
+          <button class="btn btn-outline" id="toggleHighlightsOnly">Modo Resumo (Só Grifos)</button>
+          <input type="search" id="searchInput" placeholder="Buscar termo (ex: SISMA, Ct, Heicon)..." />
+        </div>
+      </div>
+
+      <nav class="tabs" aria-label="Navegação de Conteúdo">
+        <button class="tab active" data-tab="article">Artigo &amp; Anotações</button>
+        <button class="tab" data-tab="pico">Pergunta &amp; PICO</button>
+        <button class="tab" data-tab="tables">Dados &amp; Tabelas (Ct / Volume)</button>
+        <button class="tab" data-tab="critique">Análise Crítica</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- ABA 1: ARTIGO MANIPULÁVEL -->
+    <section id="tab-article" class="tab-panel active">
+      <div class="legend-bar">
+        <span class="legend-title">Filtrar grifos:</span>
+        <button class="chip active" data-cat="all">Todos</button>
+        <button class="chip cat-concept" data-cat="concept">Problema &amp; Conceitos</button>
+        <button class="chip cat-method" data-cat="method">Metodologia &amp; Modelo 3D</button>
+        <button class="chip cat-result" data-cat="result">Resultados &amp; RT-qPCR</button>
+        <button class="chip cat-critique" data-cat="critique">Análise Crítica &amp; Limitações</button>
+      </div>
+
+      <div class="workspace">
+        <div class="article-column" id="articleContainer">
+          <!-- Renderizado via script.js -->
+        </div>
+
+        <aside class="notes-sidebar" id="notesSidebar">
+          <div class="sidebar-header">
+            <h2>Anotações Didáticas</h2>
+            <span id="notesCounter" class="counter-pill">0 notas</span>
+          </div>
+          <p class="sidebar-hint">Clique em qualquer trecho grifado no texto para destacar a explicação correspondente ou adicione suas próprias observações abaixo.</p>
+
+          <div id="notesList" class="notes-list">
+            <!-- Renderizado via script.js -->
+          </div>
+
+          <form id="addNoteForm" class="add-note-form">
+            <h3>Nova Anotação Pessoal</h3>
+            <select id="noteSectionSelect" required>
+              <option value="Resumo / Abstract">Resumo / Abstract</option>
+              <option value="Introdução">Introdução</option>
+              <option value="Resultados">Resultados</option>
+              <option value="Discussão">Discussão</option>
+              <option value="Materiais e Métodos">Materiais e Métodos</option>
+            </select>
+            <input type="text" id="noteTitleInput" placeholder="Título curto da nota..." required />
+            <textarea id="noteBodyInput" rows="3" placeholder="Escreva sua anotação didática..." required></textarea>
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary">Salvar Nota</button>
+              <button type="button" id="exportNotesBtn" class="btn btn-outline">Exportar JSON</button>
+            </div>
+          </form>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ABA 2: PICO E PERGUNTA DE PESQUISA -->
+    <section id="tab-pico" class="tab-panel">
+      <div class="card highlight-card">
+        <h2>Pergunta de Pesquisa</h2>
+        <p>Diante da escassez de suprimentos médicos na pandemia de COVID-19 e das limitações dos testes laboratoriais tradicionais (feitos em tubos simples, que ignoram a anatomia nasal e a consistência do muco), <strong>uma plataforma <em>in vitro</em> anatômica e fisiologicamente realista permite avaliar com maior precisão a eficiência de coleta, liberação e detecção viral de swabs nasofaríngeos?</strong></p>
+      </div>
+
+      <div class="pico-grid">
+        <div class="card pico-card">
+          <span class="pico-letter">P</span>
+          <h3>População / Modelo Experimental</h3>
+          <p>Modelo de cavidade nasofaríngea impressa em 3D (a partir de tomografia computadorizada) revestida com hidrogel <strong>SISMA</strong> (simulando o muco nasal), inoculado com cargas virais clinicamente relevantes (5.000 cópias/mL) de <strong>SARS-CoV-2</strong> e vírus da febre amarela (<strong>YFV</strong>).</p>
+        </div>
+        <div class="card pico-card">
+          <span class="pico-letter">I</span>
+          <h3>Intervenção</h3>
+          <p>Coleta padronizada utilizando <strong>swabs experimentais moldados por injeção (tipo Heicon)</strong> em polipropileno de etapa única (cabeça de 11 mm × 2,2 mm) testados na bancada anatômica 3D.</p>
+        </div>
+        <div class="card pico-card">
+          <span class="pico-letter">C</span>
+          <h3>Comparação</h3>
+          <p><strong>Swabs comerciais convencionais flocados de náilon</strong> (cabeça de 20 mm × 2 mm) e o método tradicional de testagem em <strong>tubo padrão (Eppendorf)</strong>.</p>
+        </div>
+        <div class="card pico-card">
+          <span class="pico-letter">O</span>
+          <h3>Desfecho (Outcome)</h3>
+          <p>Capacidade de absorção (diferença de massa), <strong>taxa percentual de liberação</strong> em meio de transporte viral (leitura óptica a 405 nm) e confiabilidade na detecção molecular por <strong>RT-qPCR (valores de Ct)</strong>.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Por que este estudo é classificado como <em>In Vitro</em>?</h3>
+        <ul class="clean-list">
+          <li><strong>In vitro:</strong> Experimentos realizados fora de um organismo vivo, em ambiente artificial controlado construído em laboratório.</li>
+          <li><strong>Avanço sobre o tubo de ensaio:</strong> Reproduz a geometria nasal e a reologia (viscosidade e comportamento <em>shear-thinning</em>) do muco, mas não possui células vivas, circulação sanguínea, resposta imune ou transporte mucociliar ativo.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ABA 3: TABELAS E DADOS -->
+    <section id="tab-tables" class="tab-panel">
+      <div class="card">
+        <h2>Tabela 1 — Desempenho de Coleta e Liberação de Amostras (Hidrogel SISMA)</h2>
+        <p class="table-note">Analogia didática (Hemoglobina/Mioglobina): não basta avaliar quanto o swab absorve; o parâmetro crítico para o diagnóstico é quanto material ele efetivamente libera no meio de transporte (VTM).</p>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Modelo Experimental</th>
+                <th>Tipo de Swab</th>
+                <th>Volume Coletado (µL ± DP)</th>
+                <th>Volume Liberado (µL ± DP)</th>
+                <th>Eficiência de Liberação (% ± DP)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="row-accent">
+                <td><strong>Cavidade 3D</strong></td>
+                <td>Heicon (Injetado)</td>
+                <td>12,30 ± 3,24</td>
+                <td>10,31 ± 3,70</td>
+                <td><strong>82,48% ± 12,70%</strong></td>
+              </tr>
+              <tr>
+                <td><strong>Cavidade 3D</strong></td>
+                <td>Comercial (Flocado)</td>
+                <td>22,71 ± 3,40</td>
+                <td>15,81 ± 4,21</td>
+                <td>69,44% ± 12,68%</td>
+              </tr>
+              <tr>
+                <td>Tubo Padrão</td>
+                <td>Heicon (Injetado)</td>
+                <td>59,65 ± 4,49</td>
+                <td>40,94 ± 5,13</td>
+                <td>68,77% ± 8,49%</td>
+              </tr>
+              <tr>
+                <td>Tubo Padrão</td>
+                <td>Comercial (Flocado)</td>
+                <td>192,47 ± 10,82</td>
+                <td>49,99 ± 13,89</td>
+                <td>25,89% ± 6,76%</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Tabela 2 — Recuperação Viral por RT-qPCR (Valores de Cycle Threshold — Ct)</h2>
+        <p class="table-note"><strong>Interpretação do Ct:</strong> Quanto <em>menor</em> o valor de Ct, menos ciclos de amplificação foram necessários para detectar o RNA viral — indicando maior carga viral recuperada. Todos os testes ficaram abaixo do limiar clínico de detecção (Ct &lt; 40).</p>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Modelo</th>
+                <th>Vírus (5.000 cópias/mL)</th>
+                <th>Tipo de Swab</th>
+                <th>Ct YFV (± DP)</th>
+                <th>Ct HEX [N1] (± DP)</th>
+                <th>Ct FAM [N2] (± DP)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="row-accent">
+                <td><strong>Cavidade 3D</strong></td>
+                <td>YFV (Febre Amarela)</td>
+                <td>Heicon</td>
+                <td>30,08 ± 1,17</td>
+                <td>—</td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td><strong>Cavidade 3D</strong></td>
+                <td>YFV (Febre Amarela)</td>
+                <td>Comercial</td>
+                <td>31,48 ± 1,76</td>
+                <td>—</td>
+                <td>—</td>
+              </tr>
+              <tr class="row-accent">
+                <td><strong>Cavidade 3D</strong></td>
+                <td>SARS-CoV-2</td>
+                <td>Heicon</td>
+                <td>—</td>
+                <td>27,00 ± 2,86</td>
+                <td>27,68 ± 1,16</td>
+              </tr>
+              <tr>
+                <td><strong>Cavidade 3D</strong></td>
+                <td>SARS-CoV-2</td>
+                <td>Comercial</td>
+                <td>—</td>
+                <td>28,64 ± 1,41</td>
+                <td>28,41 ± 0,94</td>
+              </tr>
+              <tr>
+                <td>Tubo Padrão</td>
+                <td>YFV (Febre Amarela)</td>
+                <td>Heicon</td>
+                <td>25,91 ± 0,93</td>
+                <td>—</td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td>Tubo Padrão</td>
+                <td>YFV (Febre Amarela)</td>
+                <td>Comercial</td>
+                <td>26,69 ± 1,46</td>
+                <td>—</td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td>Tubo Padrão</td>
+                <td>SARS-CoV-2</td>
+                <td>Heicon</td>
+                <td>—</td>
+                <td>23,59 ± 2,99</td>
+                <td>22,89 ± 2,20</td>
+              </tr>
+              <tr>
+                <td>Tubo Padrão</td>
+                <td>SARS-CoV-2</td>
+                <td>Comercial</td>
+                <td>—</td>
+                <td>24,52 ± 0,97</td>
+                <td>24,82 ± 0,92</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABA 4: ANÁLISE CRÍTICA -->
+    <section id="tab-critique" class="tab-panel">
+      <div class="critique-grid">
+        <div class="card critique-positive">
+          <h2>Pontos Fortes e Contribuições</h2>
+          <ul class="clean-list">
+            <li><strong>Fidelidade Anatômica Multimaterial:</strong> Combina <em>VeroBlue™</em> (rígido, mimetizando osso: 2,2–3,0 GPa) e <em>Agilus30™</em> (flexível, mimetizando cartilagem e tecidos moles: Shore A ~40), evitando as distorções de modelos totalmente rígidos.</li>
+            <li><strong>Realismo Reológico do Muco:</strong> O hidrogel SISMA reproduz a viscosidade (~10 Pa·s) e o comportamento pseudoplástico (<em>shear-thinning</em>, n = 0,234 vs. 0,187 do muco nasal), preservando a integridade do RNA viral.</li>
+            <li><strong>Desmascara o Viés do Tubo:</strong> Demonstra que o teste em tubo superestima a recuperação viral (diferença significativa, p &lt; 0,0001) por eliminar barreiras anatômicas e restrições de trajetória.</li>
+            <li><strong>Custo-Efetividade e Soberania Produtiva:</strong> O swab Heicon (moldagem por injeção de polipropileno em etapa única, ciclos de 10–30 s) pode reduzir custos em 30–50% e viabilizar produção local em crises sanitárias.</li>
+            <li><strong>Controle Rigoroso contra Falsos-Positivos:</strong> Uso de controles positivos e negativos validados, evitando falsos-positivos próximos ao limite de detecção.</li>
+          </ul>
+        </div>
+
+        <div class="card critique-negative">
+          <h2>Limitações e Pontos Fracos</h2>
+          <ul class="clean-list">
+            <li><strong>Ausência de Depuração Mucociliar:</strong> Não há batimento ciliar ativo, o que *in vivo* altera a retenção e a distribuição das partículas virais.</li>
+            <li><strong>Sem Controle Térmico e Bioquímico:</strong> Ensaios conduzidos à temperatura ambiente (e não a 37 °C fisiológicos), sem controle de umidade, enzimas, detritos celulares ou fatores imunológicos da mucosa.</li>
+            <li><strong>Simplificação Bioquímica do SISMA:</strong> Embora reologicamente compatível, é uma rede polimérica simplificada que não reproduz toda a estrutura glicoproteica da mucina nativa.</li>
+            <li><strong>Instabilidade Temporal do Hidrogel:</strong> Risco de desidratação, mudanças de reticulação ou contaminação microbiana ao longo de múltiplos ciclos prolongados.</li>
+            <li><strong>Interfaces Discretas na Impressão 3D:</strong> A transição entre o polímero rígido e o flexível é abrupta, diferindo da transição tecidual gradual do organismo humano.</li>
+            <li><strong>Validação Clínica e Econômica Pendente:</strong> Exige estudos futuros de Limite de Detecção (LoD), testes *ex vivo*/clínicos e análise completa de custos regulatórios.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Repositório de Estudo Científico • Baseado em Orjuela-Garzón et al. (<em>Scientific Reports</em>, 2025; 15:37101) e anotações de METEP.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
